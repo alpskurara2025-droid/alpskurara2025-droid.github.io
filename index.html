@@ -4,379 +4,648 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>田中酒造</title>
-  <meta name="description" content="田中酒造の公式ページです。代表銘柄、蔵のこだわり、営業時間や所在地をご案内しています。">
+  <meta name="description" content="田中酒造の公式ページです。代表銘柄、酒蔵の歩み、蔵情報をご案内しています。">
   <style>
     :root {
-      --bg: #f6f1ea;
-      --paper: #fffdf9;
-      --ink: #2b2622;
-      --muted: #6c635a;
-      --accent: #7a1f1f;
-      --accent-deep: #561515;
-      --accent-soft: rgba(122, 31, 31, 0.08);
-      --gold: #c8a56a;
-      --line: #e6ddd2;
-      --shadow: 0 12px 28px rgba(43, 38, 34, 0.08);
+      --bg: #0f0e0d;
+      --bg-soft: #171513;
+      --paper: #f5efe5;
+      --paper-deep: #e7dcc8;
+      --ink: #1f1913;
+      --text: rgba(245, 239, 229, 0.9);
+      --muted: rgba(245, 239, 229, 0.66);
+      --gold: #c6a76a;
+      --gold-soft: rgba(198, 167, 106, 0.18);
+      --line: rgba(198, 167, 106, 0.3);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
     }
 
     * { box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
-      color: var(--ink);
-      line-height: 1.7;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at top right, rgba(200, 165, 106, 0.18), transparent 24%),
-        linear-gradient(180deg, #fbf7f1 0%, var(--bg) 100%);
+        radial-gradient(circle at top, rgba(198, 167, 106, 0.12), transparent 32%),
+        linear-gradient(180deg, #151210 0%, #0e0d0c 48%, #141210 100%);
+      line-height: 1.9;
+      letter-spacing: 0.02em;
     }
 
-    a { color: inherit; }
+    a { color: inherit; text-decoration: none; }
 
     .wrap {
-      width: min(1120px, calc(100% - 32px));
+      width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
     }
 
-    .hero {
-      padding: 48px 0 24px;
+    .site-header {
+      padding: 22px 0;
     }
 
-    .hero-box {
-      position: relative;
-      overflow: hidden;
-      padding: 40px 28px 32px;
-      border-radius: 24px;
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid rgba(198, 167, 106, 0.16);
+      padding-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .crest {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      color: var(--gold);
+      background: linear-gradient(180deg, rgba(198,167,106,0.12), rgba(198,167,106,0.03));
+    }
+
+    .brand-text strong,
+    .nav a,
+    .section-title,
+    .hero-title,
+    .product-name,
+    .info-label,
+    .cta strong {
+      font-weight: 600;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 18px;
       color: #fff;
-      background: linear-gradient(135deg, rgba(122,31,31,0.98), rgba(86,21,21,0.98));
-      box-shadow: var(--shadow);
+      letter-spacing: 0.14em;
     }
 
-    .hero-box::after {
-      content: "蔵";
-      position: absolute;
-      right: 18px;
-      bottom: -18px;
-      font-size: clamp(96px, 18vw, 164px);
-      line-height: 1;
-      font-weight: 800;
-      color: rgba(255,255,255,0.08);
+    .brand-text span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
 
-    .label {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.34);
-      background: rgba(255,255,255,0.08);
-      font-size: 13px;
-      letter-spacing: 0.05em;
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(34px, 6vw, 56px);
-      line-height: 1.1;
-    }
-
-    .lead {
-      max-width: 620px;
-      margin: 0;
-      font-size: clamp(16px, 2.5vw, 20px);
-      color: rgba(255,255,255,0.94);
-    }
-
-    .hero-actions {
+    .nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .hero-btn,
-    .cta {
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-
-    .hero-btn:hover,
-    .cta:hover { transform: translateY(-1px); }
-
-    .hero-btn.primary,
-    .cta.primary {
-      background: #fff;
-      color: var(--accent-deep);
-    }
-
-    .hero-btn.secondary,
-    .cta.secondary {
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.24);
-    }
-
-    .grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(12, 1fr);
-      margin: 0 0 20px;
-    }
-
-    .card {
-      grid-column: span 12;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .card h2 {
-      margin: 0 0 12px;
-      font-size: 24px;
-      line-height: 1.2;
-    }
-
-    .muted {
+      gap: 20px;
       color: var(--muted);
-      margin: 0 0 14px;
+      font-size: 14px;
+    }
+
+    .nav a:hover { color: #fff; }
+
+    .hero {
+      padding: 52px 0 72px;
+      min-height: calc(100vh - 96px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-panel {
+      position: relative;
+      width: 100%;
+      padding: 70px 72px;
+      border: 1px solid rgba(198, 167, 106, 0.18);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
+        rgba(15, 14, 13, 0.72);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-panel::before,
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      border: 1px solid rgba(198, 167, 106, 0.14);
+    }
+
+    .hero-panel::before {
+      inset: 14px;
+    }
+
+    .hero-panel::after {
+      inset: 28px;
+      opacity: 0.45;
+    }
+
+    .hero-monogram {
+      position: absolute;
+      right: 34px;
+      top: 18px;
+      font-size: clamp(120px, 18vw, 220px);
+      line-height: 1;
+      color: rgba(198, 167, 106, 0.08);
+      letter-spacing: -0.1em;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before,
+    .hero-kicker::after {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: rgba(198, 167, 106, 0.5);
+    }
+
+    .hero-title {
+      margin: 28px 0 18px;
+      font-size: clamp(44px, 8vw, 96px);
+      line-height: 1.05;
+      color: #fff;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-subtitle {
+      max-width: 680px;
+      margin: 0;
+      font-size: clamp(17px, 2.3vw, 24px);
+      color: rgba(245, 239, 229, 0.86);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 42px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(198, 167, 106, 0.18);
+      max-width: 860px;
+    }
+
+    .hero-meta div {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-meta strong {
+      display: block;
+      margin-top: 8px;
+      color: #fff;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
+
+    .section {
+      padding: 84px 0;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .section-heading {
+      margin: 18px 0 18px;
+      color: #fff;
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.18;
+      letter-spacing: 0.08em;
+    }
+
+    .section-lead {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
     }
 
     .products {
+      margin-top: 42px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .product {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 34px;
+      padding: 30px;
+      border: 1px solid rgba(198, 167, 106, 0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+    }
+
+    .product-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 240px;
+      border: 1px solid rgba(198, 167, 106, 0.18);
+      background:
+        linear-gradient(180deg, rgba(198,167,106,0.08), rgba(198,167,106,0.03)),
+        rgba(245, 239, 229, 0.02);
+      color: var(--gold);
+      font-size: 34px;
+      letter-spacing: 0.18em;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+
+    .product-type {
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .product-name {
+      margin: 10px 0 14px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.16;
+      color: #fff;
+      letter-spacing: 0.08em;
+    }
+
+    .product-copy {
+      margin: 0 0 18px;
+      color: rgba(245, 239, 229, 0.82);
+      font-size: 17px;
+    }
+
+    .product-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .product-notes li {
+      padding: 12px 14px;
+      border: 1px solid rgba(198, 167, 106, 0.14);
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .product-notes strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #fff;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+    }
+
+    .product-pairing {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .about-grid {
+      margin-top: 42px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 28px;
+    }
+
+    .paper-card {
+      background: linear-gradient(180deg, #f7f0e6, var(--paper));
+      color: var(--ink);
+      padding: 34px;
+      border: 1px solid rgba(198, 167, 106, 0.26);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    }
+
+    .paper-card h3 {
+      margin: 0 0 18px;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.25;
+      letter-spacing: 0.06em;
+    }
+
+    .paper-card p {
+      margin: 0;
+      color: rgba(31, 25, 19, 0.82);
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .philosophy-item {
+      padding: 18px 16px;
+      border: 1px solid rgba(198, 167, 106, 0.24);
+      background: rgba(255,255,255,0.46);
+    }
+
+    .philosophy-item strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 116px 1fr;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(31, 25, 19, 0.12);
+      align-items: start;
+    }
+
+    .info-row:last-child { border-bottom: none; }
+
+    .info-label {
+      color: rgba(31, 25, 19, 0.54);
+      letter-spacing: 0.08em;
+    }
+
+    .cta-row {
+      margin-top: 18px;
       display: grid;
       gap: 14px;
     }
 
-    .product {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-      background: #fff;
-    }
-
-    .tag {
-      display: inline-block;
-      margin-bottom: 10px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      font-size: 12px;
-      color: var(--accent);
-      background: var(--accent-soft);
-      border: 1px solid rgba(122, 31, 31, 0.18);
-    }
-
-    .product strong {
+    .cta {
       display: block;
-      margin-bottom: 8px;
-      font-size: 20px;
+      padding: 18px 20px;
+      border: 1px solid rgba(31, 25, 19, 0.12);
+      background: rgba(255,255,255,0.55);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .specs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 10px;
-      padding: 0;
-      list-style: none;
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
     }
 
-    .specs li {
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      color: var(--muted);
-      background: #f7f1e8;
-    }
-
-    .info-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .info-list li {
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      gap: 8px;
-      padding: 11px 0;
-      border-bottom: 1px dashed var(--line);
-    }
-
-    .info-list li:last-child { border-bottom: none; }
-
-    .info-list span {
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .address-lines div + div {
-      margin-top: 2px;
-    }
-
-    .note-box {
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: #faf4ec;
-      color: var(--muted);
-      font-size: 14px;
-      border: 1px solid var(--line);
-    }
-
-    .commitment {
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(3, 1fr);
-      margin-top: 6px;
-    }
-
-    .point {
-      padding: 16px;
-      border-radius: 18px;
-      background: #fff;
-      border: 1px solid var(--line);
-    }
-
-    .point strong {
+    .cta strong {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       font-size: 17px;
+      color: var(--ink);
+    }
+
+    .cta span {
+      color: rgba(31, 25, 19, 0.66);
+      font-size: 14px;
     }
 
     footer {
-      padding: 10px 0 40px;
-      text-align: center;
+      padding: 34px 0 46px;
+      border-top: 1px solid rgba(198, 167, 106, 0.16);
       color: var(--muted);
-      font-size: 14px;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
-    @media (min-width: 760px) {
-      .card.products-card { grid-column: span 7; }
-      .card.info-card { grid-column: span 5; }
-      .card.commitment-card { grid-column: span 12; }
+    @media (max-width: 980px) {
+      .hero-panel {
+        padding: 56px 42px;
+      }
+
+      .hero-meta,
+      .product-notes,
+      .about-grid,
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product {
+        grid-template-columns: 1fr;
+      }
+
+      .product-badge {
+        min-height: auto;
+        padding: 28px 16px;
+        writing-mode: horizontal-tb;
+      }
     }
 
-    @media (max-width: 759px) {
+    @media (max-width: 720px) {
+      .wrap {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .header-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
       .hero {
-        padding-top: 28px;
+        padding: 26px 0 52px;
+        min-height: auto;
       }
 
-      .hero-box {
-        padding: 30px 20px 24px;
+      .hero-panel {
+        padding: 42px 22px;
       }
 
-      .info-list li {
+      .hero-panel::before { inset: 10px; }
+      .hero-panel::after { inset: 20px; }
+
+      .hero-monogram {
+        right: 12px;
+        top: 28px;
+        font-size: 110px;
+      }
+
+      .hero-kicker::before,
+      .hero-kicker::after {
+        width: 24px;
+      }
+
+      .section {
+        padding: 62px 0;
+      }
+
+      .paper-card {
+        padding: 24px;
+      }
+
+      .info-row {
         grid-template-columns: 1fr;
-        gap: 4px;
-      }
-
-      .commitment {
-        grid-template-columns: 1fr;
+        gap: 6px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="brand">
+        <div class="crest">田</div>
+        <div class="brand-text">
+          <strong>田中酒造</strong>
+          <span>Tanaka Shuzo Since 1908</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#signature">代表銘柄</a>
+        <a href="#about">酒蔵について</a>
+        <a href="#access">蔵情報</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
     <section class="hero">
-      <div class="hero-box">
-        <div class="label">創業百余年の酒蔵</div>
-        <h1>田中酒造</h1>
-        <p class="lead">新潟の水と米で仕込む、食中に寄り添う端正な日本酒。</p>
-        <div class="hero-actions">
-          <a class="hero-btn primary" href="#products">商品を見る</a>
-          <a class="hero-btn secondary" href="#brewery">蔵について</a>
+      <div class="wrap">
+        <div class="hero-panel">
+          <div class="hero-monogram">田</div>
+          <div class="hero-kicker">Since 1908</div>
+          <h1 class="hero-title">田中酒造</h1>
+          <p class="hero-subtitle">新潟の雪解け水と米の旨みを丹念に引き出し、凛とした余韻の日本酒を仕立てる老舗酒蔵。</p>
+          <div class="hero-meta">
+            <div>Founded<strong>創業百余年</strong></div>
+            <div>Philosophy<strong>食中に寄り添う端正な味</strong></div>
+            <div>Origin<strong>新潟県新潟市</strong></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="grid">
-      <article class="card products-card" id="products">
-        <h2>おすすめ銘柄</h2>
-        <p class="muted">定番から季節限定まで、贈り物にも食卓にも選びやすい銘柄をご紹介します。</p>
+    <section class="section" id="signature">
+      <div class="wrap">
+        <p class="section-title">Signature Collection</p>
+        <h2 class="section-heading">代表銘柄</h2>
+        <p class="section-lead">贈答にも、日々の食卓にもふさわしい三本を、落ち着いた香りと余韻の設計で揃えています。</p>
+
         <div class="products">
-          <div class="product">
-            <div class="tag">やや辛口</div>
-            <strong>純米吟醸 朝霞</strong>
-            <ul class="specs">
-              <li>吟醸香</li>
-              <li>720ml</li>
-              <li>税込 1,980円</li>
-            </ul>
-            <div>みずみずしい香りと切れのよい後味。刺身や白身魚、旬の小鉢とよく合います。</div>
-          </div>
-          <div class="product">
-            <div class="tag">旨口</div>
-            <strong>特別純米 蔵の音</strong>
-            <ul class="specs">
-              <li>米の旨み</li>
-              <li>720ml</li>
-              <li>税込 1,650円</li>
-            </ul>
-            <div>ふくらみのある味わいで、煮物や焼き魚など毎日の食事に寄り添う一本です。</div>
-          </div>
-          <div class="product">
-            <div class="tag">季節限定</div>
-            <strong>にごり酒 雪あかり</strong>
-            <ul class="specs">
-              <li>やさしい甘み</li>
-              <li>500ml</li>
-              <li>税込 1,320円</li>
-            </ul>
-            <div>軽やかな口当たりが魅力。食前酒や和の甘味と合わせても楽しめます。</div>
-          </div>
-        </div>
-      </article>
-
-      <aside class="card info-card" id="brewery">
-        <h2>蔵情報</h2>
-        <ul class="info-list">
-          <li><span>営業時間</span><div>9:30〜17:30</div></li>
-          <li><span>定休日</span><div>日曜日・祝日</div></li>
-          <li>
-            <span>住所</span>
-            <div class="address-lines">
-              <div>〒950-0000</div>
-              <div>新潟県新潟市中央区蔵町 1-2-3</div>
+          <article class="product">
+            <div class="product-badge">朝霞</div>
+            <div>
+              <div class="product-type">Junmai Ginjo</div>
+              <h3 class="product-name">純米吟醸 朝霞</h3>
+              <p class="product-copy">澄んだ立ち香と切れのよい後口。最初の一杯にふさわしい、田中酒造の端正さを映す看板銘柄です。</p>
+              <ul class="product-notes">
+                <li><strong>味わい</strong>やや辛口 / 清冽</li>
+                <li><strong>容量</strong>720ml</li>
+                <li><strong>価格</strong>税込 1,980円</li>
+              </ul>
+              <div class="product-pairing">相性のよい料理：白身魚の刺身、冷や奴、酢の物</div>
             </div>
-          </li>
-          <li><span>電話</span><div>025-123-4567</div></li>
-          <li><span>メール</span><div>info@tanakashuzo.jp</div></li>
-        </ul>
-        <div class="hero-actions">
-          <a class="cta primary" href="mailto:info@tanakashuzo.jp?subject=%E5%8F%96%E6%89%B1%E5%BA%97%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85">取扱店のご案内</a>
-          <a class="cta secondary" href="mailto:info@tanakashuzo.jp?subject=%E8%A6%8B%E5%AD%A6%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">ご見学について</a>
-        </div>
-        <div class="note-box">ご贈答や季節商品のご相談もメールにて承っております。</div>
-      </aside>
+          </article>
 
-      <section class="card commitment-card">
-        <h2>蔵のこだわり</h2>
-        <div class="commitment">
-          <div class="point">
-            <strong>仕込み水</strong>
-            <div>雪解け水由来のやわらかな水で、澄んだ口当たりに仕上げています。</div>
-          </div>
-          <div class="point">
-            <strong>食中酒の設計</strong>
-            <div>料理の香りや味を引き立てる、穏やかな余韻を大切にしています。</div>
-          </div>
-          <div class="point">
-            <strong>季節の提案</strong>
-            <div>春夏秋冬の食卓に合わせて、その時季らしい限定酒をご案内します。</div>
-          </div>
+          <article class="product">
+            <div class="product-badge">蔵の音</div>
+            <div>
+              <div class="product-type">Tokubetsu Junmai</div>
+              <h3 class="product-name">特別純米 蔵の音</h3>
+              <p class="product-copy">米の旨みをふっくらと感じさせながら、食事を邪魔しない余韻に整えた、蔵の定番酒です。</p>
+              <ul class="product-notes">
+                <li><strong>味わい</strong>旨口 / 穏やか</li>
+                <li><strong>容量</strong>720ml</li>
+                <li><strong>価格</strong>税込 1,650円</li>
+              </ul>
+              <div class="product-pairing">相性のよい料理：焼き魚、煮物、炊き合わせ</div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-badge">雪あかり</div>
+            <div>
+              <div class="product-type">Nigori Seasonal</div>
+              <h3 class="product-name">にごり酒 雪あかり</h3>
+              <p class="product-copy">やわらかな甘みと軽やかな口当たり。冬の設えに寄り添う、季節限定のにごり酒です。</p>
+              <ul class="product-notes">
+                <li><strong>味わい</strong>やさしい甘み</li>
+                <li><strong>容量</strong>500ml</li>
+                <li><strong>価格</strong>税込 1,320円</li>
+              </ul>
+              <div class="product-pairing">相性のよい料理：食前酒、白和え、和の甘味</div>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
     </section>
 
-    <footer>
-      <div>田中酒造 | 新潟の恵みを、丁寧な一杯に。</div>
-    </footer>
-  </div>
+    <section class="section" id="about">
+      <div class="wrap">
+        <p class="section-title">Brewery Story</p>
+        <h2 class="section-heading">酒蔵について</h2>
+        <p class="section-lead">時代が移っても、田中酒造は水と米の表情を丁寧に見つめ、華美に走らない品格の一杯を守り続けています。</p>
+
+        <div class="about-grid">
+          <article class="paper-card">
+            <h3>静けさのある旨みを、食卓へ。</h3>
+            <p>雪深い土地で磨かれた水のやわらかさを生かし、香りは控えめに、余韻は端正に。田中酒造は、料理の味わいを引き立てる食中酒を蔵の中心に据えています。</p>
+            <div class="philosophy-grid">
+              <div class="philosophy-item">
+                <strong>仕込み水</strong>
+                <div>雪解け由来のやわらかな水で、澄んだ口当たりへ。</div>
+              </div>
+              <div class="philosophy-item">
+                <strong>米の扱い</strong>
+                <div>旨みの芯を残し、重たさを残さない設計に。</div>
+              </div>
+              <div class="philosophy-item">
+                <strong>熟成感</strong>
+                <div>若さと落ち着きの均衡を大切に、余韻を整えます。</div>
+              </div>
+            </div>
+          </article>
+
+          <aside class="paper-card" id="access">
+            <h3>蔵情報</h3>
+            <div class="info-list">
+              <div class="info-row"><div class="info-label">営業時間</div><div>9:30〜17:30</div></div>
+              <div class="info-row"><div class="info-label">定休日</div><div>日曜日・祝日</div></div>
+              <div class="info-row"><div class="info-label">所在地</div><div>〒950-0000<br>新潟県新潟市中央区蔵町 1-2-3</div></div>
+              <div class="info-row"><div class="info-label">電話</div><div>025-123-4567</div></div>
+              <div class="info-row"><div class="info-label">メール</div><div>info@tanakashuzo.jp</div></div>
+            </div>
+            <div class="cta-row">
+              <a class="cta" href="mailto:info@tanakashuzo.jp?subject=%E5%8F%96%E6%89%B1%E5%BA%97%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85">
+                <strong>取扱店のご案内</strong>
+                <span>ご贈答やお取り寄せのご相談を承ります。</span>
+              </a>
+              <a class="cta" href="mailto:info@tanakashuzo.jp?subject=%E8%A6%8B%E5%AD%A6%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">
+                <strong>ご見学について</strong>
+                <span>蔵の見学可否や時季のご案内はこちらから。</span>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Tanaka Shuzo · Niigata Japan</div>
+  </footer>
 </body>
 </html>
