@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本の酒屋 | 仮ページ</title>
+  <meta name="description" content="日本の酒屋の仮公開ページです。おすすめの日本酒や営業時間、店舗情報を掲載しています。">
+  <style>
+    :root {
+      --bg: #f7f3ed;
+      --paper: #fffdf9;
+      --ink: #2b2622;
+      --muted: #6e655c;
+      --accent: #7a1f1f;
+      --accent-2: #caa56a;
+      --line: #e6ddd2;
+      --shadow: 0 12px 28px rgba(43, 38, 34, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(202, 165, 106, 0.18), transparent 24%),
+        linear-gradient(180deg, #fbf7f1 0%, var(--bg) 100%);
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    .wrap {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .hero {
+      padding: 56px 0 32px;
+    }
+    .hero-box {
+      background: linear-gradient(135deg, rgba(122,31,31,0.96), rgba(84,18,18,0.96));
+      color: #fff;
+      border-radius: 24px;
+      padding: 42px 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-box::after {
+      content: "酒";
+      position: absolute;
+      right: 20px;
+      bottom: -18px;
+      font-size: clamp(90px, 18vw, 160px);
+      line-height: 1;
+      color: rgba(255,255,255,0.08);
+      font-weight: 800;
+    }
+    .label {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,0.08);
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 6vw, 54px);
+      line-height: 1.15;
+    }
+    .lead {
+      max-width: 680px;
+      margin: 0;
+      font-size: clamp(16px, 2.6vw, 19px);
+      color: rgba(255,255,255,0.92);
+    }
+    .notice {
+      margin-top: 18px;
+      display: inline-block;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.14);
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(12, 1fr);
+      margin: 28px 0 60px;
+    }
+    .card {
+      grid-column: span 12;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+    }
+    .muted { color: var(--muted); }
+    .products {
+      display: grid;
+      gap: 16px;
+    }
+    .product {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: #fff;
+    }
+    .product strong {
+      display: block;
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--accent);
+      border: 1px solid rgba(122,31,31,0.2);
+      background: rgba(122,31,31,0.06);
+      padding: 4px 8px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .info-list li {
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+    .info-list li:last-child { border-bottom: none; }
+    .info-list span {
+      display: inline-block;
+      min-width: 96px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .cta {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 18px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+    footer {
+      padding: 0 0 48px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+    @media (min-width: 760px) {
+      .card.products-card { grid-column: span 7; }
+      .card.info-card { grid-column: span 5; }
+      .products { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-box">
+        <div class="label">仮公開ページ</div>
+        <h1>日本の酒屋</h1>
+        <p class="lead">四季を感じる日本酒と、毎日の食卓に寄り添う一本をそろえた酒屋の仮ページです。正式公開前のため、掲載内容はサンプルです。</p>
+        <div class="notice">ただいま店舗紹介ページを準備中です。</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card products-card">
+        <h2>おすすめの一杯</h2>
+        <p class="muted">仮掲載のおすすめ商品です。実際の在庫や価格とは異なります。</p>
+        <div class="products">
+          <div class="product">
+            <div class="tag">やや辛口</div>
+            <strong>純米吟醸 さくら雫</strong>
+            <div>華やかな香りとすっきりした後味。刺身や冷菜と相性のよい一本です。</div>
+          </div>
+          <div class="product">
+            <div class="tag">まろやか</div>
+            <strong>特別純米 山灯</strong>
+            <div>米の旨みをしっかり感じられる、食中酒向きの定番酒です。</div>
+          </div>
+          <div class="product">
+            <div class="tag">季節限定</div>
+            <strong>にごり酒 白霞</strong>
+            <div>やさしい甘みと軽い発泡感が楽しめる、季節の人気商品です。</div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="card info-card">
+        <h2>店舗情報</h2>
+        <ul class="info-list">
+          <li><span>営業時間</span>10:00〜19:00</li>
+          <li><span>定休日</span>水曜日</li>
+          <li><span>住所</span>〒100-0000 東京都○○区○○ 1-2-3</li>
+          <li><span>電話</span>03-1234-5678</li>
+          <li><span>メール</span>info@example.jp</li>
+        </ul>
+        <a class="cta" href="mailto:info@example.jp">お問い合わせ</a>
+      </aside>
+    </section>
+
+    <footer>
+      <div>※ このページは仮のHTMLページです。内容はサンプルであり、正式公開時に変更されます。</div>
+    </footer>
+  </div>
+</body>
+</html>
